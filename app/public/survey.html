@@ -5,12 +5,16 @@
   <title>Reservation Page</title>
 
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 </head>
 <body>
@@ -36,178 +40,186 @@
                     <form role="form">
                         
                        <div>
-                            <h2>Survey</h2>
+                            <h2>Survey</21>
                             <hr>
-                            <h3>About You</h3>
+                            <h4>About You:</h4>
                             <br>
                         </div>
                     
                         <div class="form-group">
-                                <h4 class="Q-label">Name (required)</h4>
+                                <h6 class="Q-label">Name (required)</h6>
                             <input type="text" class="form-control" id="user-name">
                         </div>
 
                         <div class="form-group">
-                                <h4 class="Q-label">Photo URL (required)</h4>
+                                <h6 class="Q-label">Photo URL (required)</h6>
                             <input type="text" class="form-control" id="user-url">
                         </div>
                         
                         <br>
 
                         <div>
-                            <h3>Rate the following statements</h3>
+                            <h4>Rate the following statements:</h4>
                         </div>
 
                         <br>
 
-                        <h4 class="Q-label">I listen to music often:</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
+                        <div class="form-group">
+                            <h6 class="Q-label">I like to understand the underlying theory.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
                         </div>
 
                         <br>
 
-                        <h4 class="Q-label">I watch a lot of TV:</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
+                        <div class="form-group">
+                            <h6 class="Q-label">I enjoy repairing things.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
                         </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <h6 class="Q-label">I believe that documentation is life.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <h6 class="Q-label">I enjoy figuring out how things work.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <h6 class="Q-label">I believe there are often multiple ways to accomplish a task.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <h6 class="Q-label">I enjoy problem-solving.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <h6 class="Q-label">I enjoy setting long-term goals.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <h6 class="Q-label">I can stare at my computer screen for hours on end.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <h6 class="Q-label">I like helping people.</h6>
+                            <select class="form-control" id="sel1" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
+                            
+                        <br>
+
+                        <div class="form-group">
+                                <h6 class="Q-label">I believe that coders and web designers are awesome.</h6>
+                                <select class="form-control" id="sel1" style="width: 250px">
+                                    <option value="" selected disabled>Please select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+    
+                              
+                        <!-- <div class="dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                  <span id="selected1">Choose option</span><span class="caret"></span></a>
+                              <ul class="dropdown-menu" id="d1">
+                                <li><a href="#">Option 1</a></li>
+                                <li><a href="#">Option 2</a></li>
+                                <li><a href="#">Option 3</a></li>
+                                <li><a href="#">Option 4</a></li>
+                              </ul>
+                            </div> -->
+
+
+                            
+                       
+
+
                         
-                        <br>
-
-                        <h4 class="Q-label">I like to travel:</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-                        
-                        <br>
-
-                        <h4 class="Q-label">I enjoy being active:</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-                        
-                        <br>
-
-                        <h4 class="Q-label">I enjoy watching sports:</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-                        
-                        <br>
-
-                        <h4 class="Q-label"></h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-                        
-                        <br>
-
-                        <h4 class="Q-label">Question</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-                        
-                        <br>
-
-                        <h4 class="Q-label">Question</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-                        
-                        <br>
-
-                        <h4 class="Q-label">Question</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-                        
-                        <br>
-
-                        <h4 class="Q-label">Question</h4>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an option
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" value="5">5 (strongly agree)</a>
-                                <a class="dropdown-item" value="4">4</a>
-                                <a class="dropdown-item" value="3">3</a>
-                                <a class="dropdown-item" value="2">2</a>
-                                <a class="dropdown-item" value="1">1 (strongly disagree)</a>
-                            </div>
-                        </div>
-
 
 
                         
@@ -236,6 +248,9 @@
         </footer>
 
      </div>
+
+
+     
 
 </body>
 </html>
@@ -289,4 +304,20 @@
 
     });
 
+
+
+
+
+//     $(".dropdown-menu li a").click(function(e){
+//     var selText = $(this).text();
+//     $(this).parents('.input-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');       
+// });
+$('.dropdown-menu a').click(function(){
+    $('#selected1').text($(this).text());
+  });
+
+$('.dropdown-menu a').click(function(){
+    $('#selected2').text($(this).text());
+  });
+  
 </script>

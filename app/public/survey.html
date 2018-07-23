@@ -260,14 +260,27 @@
             scores: selections
         };
 
+        var validUrl = false;
+        if (newFriend.photo.substring(0,8) === "https://" || newFriend.photo.substring(0,7) === "http://") {
+            validUrl = true; 
+        }
+
+        // var validPicture = false;
+        // if (newFriend.photo.substring(0,7) = "https://" || newFriend.photo.substring(0,6) != "http://") {
+        //     validPicture = true; 
+        // }
+
         if (!newFriend.name && !newFriend.photo) {
-            alert("Name and a photo URL are required")
+            alert("Your name and a photo URL are both required")
         }
         else if (!newFriend.name) {
-            alert("Name is required")
+            alert("Your name is required")
         }
         else if (!newFriend.photo) {
             alert("A link to a photo is required")
+        }
+        else if (validUrl === false) {
+            alert("A valid URL address should begin with http:// or https://")
         }
         else if (!formCompleted) {
             alert("Please answer all questions")
@@ -317,7 +330,7 @@
                 console.log("userName=" + friendName);
                 console.log("userphoto=" + friendphoto);
                 console.log("userScore=" + friendScore);
-                $("#openModal").find(".modal-body").html("<h4>" + winningName + "&nbsp; &nbsp; <img src='" + winningPhoto + "' alt='[" + winningName + " photo not found]' height='100'></h4>");
+                $("#openModal").find(".modal-body").html("<h4>" + winningName + "&nbsp; &nbsp; <img src='" + winningPhoto + "' alt='[photo not found]' height='100'></h4>");
                 $("#openModal").modal("show");
             });
         };      

@@ -10,32 +10,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
-
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-  
+ 
 
 </head>
 <body>
 
     <div class="container">
 
-         
-
-
         <div class="row">
             <div class="col-lg-12">
-
-                <!-- <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2>Survey</h2>
-                    <hr>
-                    </div>
-                </div> -->
-
 
                 <div class="panel-body">
 
@@ -193,21 +176,22 @@
                         <br>
 
                         <div class="form-group">
-                                <h6 class="Q-label">I believe that coders and web designers are awesome.</h6>
-                                <select class="form-control" id="sel10" style="width: 250px">
-                                    <option value="" selected disabled>Please select an option</option>
-                                    <option value="5">5 (strongly agree)</option>
-                                    <option value="4">4</option>
-                                    <option value="3">3</option>
-                                    <option value="2">2</option>
-                                    <option value="1">1 (strongly disagree)</option>
-                                </select>
-                            </div>
-    
-                              
+                            <h6 class="Q-label">I believe that coders and web designers are awesome.</h6>
+                            <select class="form-control" id="sel10" style="width: 250px">
+                                <option value="" selected disabled>Please select an option</option>
+                                <option value="5">5 (strongly agree)</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1 (strongly disagree)</option>
+                            </select>
+                        </div>
                         <br>
+
                         <button type="submit" class="btn btn-info submit">Submit Answers</button>
+
                         <br>
+
                     </form>
 
                 </div>
@@ -221,7 +205,7 @@
 
         <footer class="footer">
         <div class="container">
-            <br><p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/Hxxxxxx">GitHub Repo</a></p>
+            <br><p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/mlech413/FriendFinder">GitHub Repo</a></p>
         </div>
         </footer>
 
@@ -239,7 +223,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- empty div for friend match results -->
+                    <!-- Empty div for displaying friend match results -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -258,68 +242,85 @@
         event.preventDefault();
     
         var selections = [];
+        var formCompleted = true;
         for (i = 0; i < 10; i++) {
             selNum = i + 1;
             selName = "sel" + selNum;
             // console.log("selName=" + selName);
             // console.log($("#" + selName).val());
             selections[i] = $("#" + selName).val();
+            if (!selections[i]) {
+                formCompleted = false;
+            }
         }
-
+    
         var newFriend = {
             name: $("#user-name").val().trim(),
             photo: $("#user-url").val().trim(),
             scores: selections
         };
 
-        console.log("survey newFriend=" + newFriend);
+        if (!newFriend.name && !newFriend.photo) {
+            alert("Name and a photo URL are required")
+        }
+        else if (!newFriend.name) {
+            alert("Name is required")
+        }
+        else if (!newFriend.photo) {
+            alert("A link to a photo is required")
+        }
+        else if (!formCompleted) {
+            alert("Please answer all questions")
+        }
+        else {
+            console.log("survey newFriend=" + newFriend);
 
-        $.post("/api/friends", newFriend, function(data) {
-        });
-        $.get("/api/friends", newFriend, function(data) {
-            console.log("data.length=" + data.length);
-            var winningName = "Empty";
-            var winningPhoto = "Empty";
-            var winningScore = 99;
-            var selectionsInt = [];
-            for (s = 0; s <  selections.length; s++) {
-                selectionsInt[s] = parseInt(selections[s]);
-            }
-            for (i = 0; i < data.length - 1; i++) {
-                var friendName = data[i].name;
-                var friendphoto = data[i].photo;
-                var friendScore = data[i].scores;
-                var friendScoreInt = [];
-                for (s = 0; s <  friendScore.length; s++) {
-                    friendScoreInt[s] = parseInt(friendScore[s]);
+            $.post("/api/friends", newFriend, function(data) {
+            });
+            $.get("/api/friends", newFriend, function(data) {
+                console.log("data.length=" + data.length);
+                var winningName = "Empty";
+                var winningPhoto = "Empty";
+                var winningScore = 99;
+                var selectionsInt = [];
+                for (s = 0; s <  selections.length; s++) {
+                    selectionsInt[s] = parseInt(selections[s]);
                 }
-                var totalScoreDiff = 0;
-                var calculateDiff = 0;
-                console.log("userScore=" + friendScore);
-                console.log("selections=" + selections);
-                for (q = 0; q < 10; q++) {
-                    calculateDiff = friendScoreInt[q] - selectionsInt[q];
-                    if (calculateDiff < 0) {
-                        calculateDiff = calculateDiff * (-1);
+                for (i = 0; i < data.length - 1; i++) {
+                    var friendName = data[i].name;
+                    var friendphoto = data[i].photo;
+                    var friendScore = data[i].scores;
+                    var friendScoreInt = [];
+                    for (s = 0; s <  friendScore.length; s++) {
+                        friendScoreInt[s] = parseInt(friendScore[s]);
                     }
-                    console.log("calculateDiff=" + calculateDiff);
-                    totalScoreDiff += calculateDiff;
-                    console.log("totalScoreDiff=" + totalScoreDiff);
+                    var totalScoreDiff = 0;
+                    var calculateDiff = 0;
+                    console.log("userScore=" + friendScore);
+                    console.log("selections=" + selections);
+                    for (q = 0; q < 10; q++) {
+                        calculateDiff = friendScoreInt[q] - selectionsInt[q];
+                        if (calculateDiff < 0) {
+                            calculateDiff = calculateDiff * (-1);
+                        }
+                        console.log("calculateDiff=" + calculateDiff);
+                        totalScoreDiff += calculateDiff;
+                        console.log("totalScoreDiff=" + totalScoreDiff);
+                    }
+                    if (totalScoreDiff < winningScore) {
+                    winningName = friendName;
+                    winningPhoto = friendphoto;
+                    winningScore = totalScoreDiff;
+                    }
                 }
-                if (totalScoreDiff < winningScore) {
-                winningName = friendName;
-                winningPhoto = friendphoto;
-                winningScore = totalScoreDiff;
-                }
-            }
-            
-            console.log("userName=" + friendName);
-            console.log("userphoto=" + friendphoto);
-            console.log("userScore=" + friendScore);
-            $("#openModal").find(".modal-body").html("<h4>" + winningName + "&nbsp; &nbsp; <img src='" + winningPhoto + "' alt='[" + winningName + " photo not found]' height='100'></h4>");
-            $("#openModal").modal("show");
-        });
-
+                
+                console.log("userName=" + friendName);
+                console.log("userphoto=" + friendphoto);
+                console.log("userScore=" + friendScore);
+                $("#openModal").find(".modal-body").html("<h4>" + winningName + "&nbsp; &nbsp; <img src='" + winningPhoto + "' alt='[" + winningName + " photo not found]' height='100'></h4>");
+                $("#openModal").modal("show");
+            });
+        };      
 
     });
   

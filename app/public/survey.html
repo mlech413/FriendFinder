@@ -212,7 +212,7 @@
      </div>
 
 
-    <!-- Modal -->
+    <!-- Bootstrap Modal for display pop-up to show the matching friend -->
     <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -223,7 +223,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Empty div for displaying friend match results -->
+                    <!-- Empty div for displaying friend name and photo -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -243,17 +243,19 @@
     
         var selections = [];
         var formCompleted = true;
+        // Loop to get the class name of each of the ten questions (#sel1 through #sel10)
         for (i = 0; i < 10; i++) {
             selNum = i + 1;
             selName = "sel" + selNum;
-            // console.log("selName=" + selName);
-            // console.log($("#" + selName).val());
+            // Grab each of the 10 answers and put onto an array
             selections[i] = $("#" + selName).val();
+            // Catch any missing required entries so alert can be displayed later
             if (!selections[i]) {
                 formCompleted = false;
             }
         }
     
+        // Object of user entries
         var newFriend = {
             name: $("#user-name").val().trim(),
             photo: $("#user-url").val().trim(),
@@ -261,56 +263,63 @@
         };
 
         var validUrl = false;
+        // Check if the photo URL field is valid (starts with http or https)
         if (newFriend.photo.substring(0,8) === "https://" || newFriend.photo.substring(0,7) === "http://") {
             validUrl = true; 
         }
 
-        // var validPicture = false;
-        // if (newFriend.photo.substring(0,7) = "https://" || newFriend.photo.substring(0,6) != "http://") {
-        //     validPicture = true; 
-        // }
-
+        // Alert if missing name and photo
         if (!newFriend.name && !newFriend.photo) {
             alert("Your name and a photo URL are both required")
         }
+        // Alert if missing name
         else if (!newFriend.name) {
             alert("Your name is required")
         }
+        // Alert if missing photo
         else if (!newFriend.photo) {
             alert("A link to a photo is required")
         }
+        // Alert if photo URL doesn't start with http or https
         else if (validUrl === false) {
             alert("A valid URL address should begin with http:// or https://")
         }
+        // Alert if any of the personality questions weren't answered
         else if (!formCompleted) {
             alert("Please answer all questions")
         }
+        // All is good, so process the form
         else {
-            console.log("survey newFriend=" + newFriend);
-
+            // Post the data
             $.post("/api/friends", newFriend, function(data) {
             });
+            // Get the data back for comparison
             $.get("/api/friends", newFriend, function(data) {
-                console.log("data.length=" + data.length);
+                // Variables for comparing and finding the 'winning' match
                 var winningName = "Empty";
                 var winningPhoto = "Empty";
                 var winningScore = 99;
                 var selectionsInt = [];
+                // Make sure all user answers are integers
                 for (s = 0; s <  selections.length; s++) {
                     selectionsInt[s] = parseInt(selections[s]);
                 }
+                // Loop through and process each saved friend. Ignore the last friend (because that's actually the current user).
                 for (i = 0; i < data.length - 1; i++) {
+                    // Store retrieved friend info
                     var friendName = data[i].name;
                     var friendphoto = data[i].photo;
                     var friendScore = data[i].scores;
                     var friendScoreInt = [];
+                    // Make sure all retrieved friend answers are integers
                     for (s = 0; s <  friendScore.length; s++) {
                         friendScoreInt[s] = parseInt(friendScore[s]);
                     }
                     var totalScoreDiff = 0;
                     var calculateDiff = 0;
-                    console.log("userScore=" + friendScore);
-                    console.log("selections=" + selections);
+                    // console.log("userScore=" + friendScore);
+                    // console.log("selections=" + selections);
+                    // Calculate the difference between current user and the retrieved friend for each question
                     for (q = 0; q < 10; q++) {
                         calculateDiff = friendScoreInt[q] - selectionsInt[q];
                         if (calculateDiff < 0) {
@@ -320,17 +329,20 @@
                         totalScoreDiff += calculateDiff;
                         console.log("totalScoreDiff=" + totalScoreDiff);
                     }
+                    // If total score difference is lower than previous friend, update all friend info because they have become the new low score
                     if (totalScoreDiff < winningScore) {
-                    winningName = friendName;
-                    winningPhoto = friendphoto;
-                    winningScore = totalScoreDiff;
+                        winningName = friendName;
+                        winningPhoto = friendphoto;
+                        winningScore = totalScoreDiff;
                     }
                 }
                 
-                console.log("userName=" + friendName);
-                console.log("userphoto=" + friendphoto);
-                console.log("userScore=" + friendScore);
+                // console.log("userName=" + friendName);
+                // console.log("userphoto=" + friendphoto);
+                // console.log("userScore=" + friendScore);
+                // Populate the html div in the modal, so the name and the picture is displayed on the pop-up
                 $("#openModal").find(".modal-body").html("<h4>" + winningName + "&nbsp; &nbsp; <img src='" + winningPhoto + "' alt='[photo not found]' height='100'></h4>");
+                // Open the pop-up and display the name and photo of the matching friend
                 $("#openModal").modal("show");
             });
         };      

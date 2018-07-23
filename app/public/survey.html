@@ -233,13 +233,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Best Match</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    aaa
+                    <!-- empty div for friend match results -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -261,24 +261,62 @@
         for (i = 0; i < 10; i++) {
             selNum = i + 1;
             selName = "sel" + selNum;
-            console.log("selName=" + selName);
-            console.log($("#" + selName).val());
+            // console.log("selName=" + selName);
+            // console.log($("#" + selName).val());
             selections[i] = $("#" + selName).val();
         }
 
-      var newFriend = {
-        name: $("#user-name").val().trim(),
-        photo: $("#user-url").val().trim(),
-        scores: selections
-      };
+        var newFriend = {
+            name: $("#user-name").val().trim(),
+            photo: $("#user-url").val().trim(),
+            scores: selections
+        };
 
-      console.log("survey newFriend=" + newFriend);
+        console.log("survey newFriend=" + newFriend);
 
-      $.post("/api/friends", newFriend, function(data) {
+        $.post("/api/friends", newFriend, function(data) {
         });
         $.get("/api/friends", newFriend, function(data) {
-            console.log("Yay! Your new friend is " + data );
-            $("#openModal").find(".modal-body").html(JSON.stringify(data));
+            console.log("data.length=" + data.length);
+            var winningName = "Empty";
+            var winningPhoto = "Empty";
+            var winningScore = 99;
+            var selectionsInt = [];
+            for (s = 0; s <  selections.length; s++) {
+                selectionsInt[s] = parseInt(selections[s]);
+            }
+            for (i = 0; i < data.length - 1; i++) {
+                var friendName = data[i].name;
+                var friendphoto = data[i].photo;
+                var friendScore = data[i].scores;
+                var friendScoreInt = [];
+                for (s = 0; s <  friendScore.length; s++) {
+                    friendScoreInt[s] = parseInt(friendScore[s]);
+                }
+                var totalScoreDiff = 0;
+                var calculateDiff = 0;
+                console.log("userScore=" + friendScore);
+                console.log("selections=" + selections);
+                for (q = 0; q < 10; q++) {
+                    calculateDiff = friendScoreInt[q] - selectionsInt[q];
+                    if (calculateDiff < 0) {
+                        calculateDiff = calculateDiff * (-1);
+                    }
+                    console.log("calculateDiff=" + calculateDiff);
+                    totalScoreDiff += calculateDiff;
+                    console.log("totalScoreDiff=" + totalScoreDiff);
+                }
+                if (totalScoreDiff < winningScore) {
+                winningName = friendName;
+                winningPhoto = friendphoto;
+                winningScore = totalScoreDiff;
+                }
+            }
+            
+            console.log("userName=" + friendName);
+            console.log("userphoto=" + friendphoto);
+            console.log("userScore=" + friendScore);
+            $("#openModal").find(".modal-body").html("<h4>" + winningName + "&nbsp; &nbsp; <img src='" + winningPhoto + "' alt='[" + winningName + " photo not found]' height='100'></h4>");
             $("#openModal").modal("show");
         });
 
